@@ -1,7 +1,10 @@
 const { gql } = require("apollo-server-express");
 
+
+
+
 // Definiciones de consultas CRUD
-const typeDefs = gql`
+export const typeDefs = gql`
     type User{
         id: ID          
         name: String
@@ -12,8 +15,13 @@ const typeDefs = gql`
         getOneUser(name:String):User
         getUsers:[User]
     }
+    """ input AtribUser{
+        name:String
+        password: String      // tuve problemas para implentarlo con esto
+        email: String
+    } """
     type Mutation{
-        createUser(id:ID,name:String,password:String,email:String):User
+        createUser(name:String,password:String,email:String):User
         destroyUser(id:ID!):String
         updateUser(id:ID!,name:String,password:String,email:String):User
     }

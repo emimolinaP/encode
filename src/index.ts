@@ -15,27 +15,19 @@ mongoose
       serverSelectionTimeoutMS: 0,
     }
   )
-  .then((con) => {
+  .then((con:any) => {
     console.log("Conectado a la DB");
   });
 //
 
 
-app.get("/", (req, res) => {
-    res.send("Bienvenido.. ");
-});
-
 
 //funcion principal(levanta server)
 async function run() {
-  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+  const apolloServer = new ApolloServer({ typeDefs, resolvers});
 
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
-
-  app.use((req, res, next) => {
-    res.status(404).send("not found");
-  });
 
   app.listen(3000, () => console.log("Server escuchando en el puerto", 3000));
 }
